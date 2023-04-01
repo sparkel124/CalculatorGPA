@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        // Main methode to create and run the login GUI
+        LoginGUI loginGUI = new LoginGUI();
     }
 }

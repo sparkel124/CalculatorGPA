@@ -1,16 +1,16 @@
 public class Account {
-    protected String name;
+    protected String username;
     protected String password;
-    public Account(String name, String password) {
-        this.name = name;
+    public Account(String username, String password) {
+        this.username = username;
         this.password = password;
     }
     public String getName() {
-        return name;
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -19,6 +19,11 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    // Method to check login credentials
+    public boolean checkLogin(){
+        return username.equals("Student") && password.equals("Password");
     }
 
 
