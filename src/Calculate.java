@@ -6,7 +6,7 @@ public class Calculate {
     private double totalCal;
     private double totalHCI;
     private double GPA;
-    
+
     public double getTotalSC() {
         return totalSC;
     }
