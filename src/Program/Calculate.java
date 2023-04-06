@@ -1,3 +1,5 @@
+package Program;
+
 public class Calculate {
     private double totalSC;
     private double totalDS;

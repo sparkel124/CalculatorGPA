@@ -1,3 +1,7 @@
+package LoginFrame;
+
+import Program.Account;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +17,7 @@ public class LoginGUI extends JFrame implements ActionListener {
 
     // Constructor method to initialize the GUI
     public LoginGUI() {
-        setTitle("Student Account Login");
+        setTitle("Program.Student Program.Account Login");
         setSize(400, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(2, 1));
@@ -53,7 +57,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         // Create StudentAccount object and check login credentials
         Account account = new Account(username, password);
         if(account.checkLogin()){
-            // Display succes message in message dialog
+            // Display success message in message dialog
             JOptionPane.showMessageDialog(this, "Login successful!");
         }
         else{

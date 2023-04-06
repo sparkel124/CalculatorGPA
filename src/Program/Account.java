@@ -1,3 +1,5 @@
+package Program;
+
 public class Account {
     protected String username;
     protected String password;
@@ -23,7 +25,7 @@ public class Account {
 
     // Method to check login credentials
     public boolean checkLogin(){
-        return username.equals("Student") && password.equals("Password");
+        return username.equals("Program.Student") && password.equals("Password");
     }
 
 

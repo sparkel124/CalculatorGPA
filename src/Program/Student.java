@@ -1,4 +1,8 @@
-public class Student extends Account{
+package Program;
+
+import Program.Account;
+
+public class Student extends Account {
     private double SCAsgScore, DSAsgScore, OOPAsgScore, CBAsgScore, CalAsgScore, HCIAsgScore;
     private double SCMidScore, DSMidScore, OOPMidScore, CBMidScore, CalMidScore, HCIMidScore;
     private double SCFinalScore, DSFinalScore, OOPFinalScore, CBFinalScore, CalFinalScore, HCIFinalScore;
