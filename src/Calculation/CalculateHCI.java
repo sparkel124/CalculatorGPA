@@ -1,4 +1,4 @@
-package Caluculation;
+package Calculation;
 
 public class CalculateHCI {
 }
