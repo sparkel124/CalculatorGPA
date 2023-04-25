@@ -6,7 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.text.NumberFormat;
-public class InputScoreCalculus extends JFrame implements ActionListener{
+
+public class InputScoreCalculus extends JFrame implements ActionListener {
     private JLabel asgLabel, midLabel, finalLabel, TitleLabel;
     private JFormattedTextField asgField, midField, finalField;
     private JButton submitBtn;
@@ -35,22 +36,22 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
         finalLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         asgField = new JFormattedTextField(scoreFormat);
-        asgField.setColumns(10);
         asgField.setPreferredSize(new Dimension(150, 30)); // set dimensi awal
-        asgField.setMinimumSize(new Dimension(150, 30)); // set ukuran minimum
-        asgField.setMaximumSize(new Dimension(200, 30)); // set ukuran maksimum
+//        asgField.setColumns(10);
+//        asgField.setMinimumSize(new Dimension(150, 30)); // set ukuran minimum
+//        asgField.setMaximumSize(new Dimension(200, 30)); // set ukuran maksimum
 
         midField = new JFormattedTextField(scoreFormat);
-        midField.setColumns(10); //width of the field
-        midField.setPreferredSize(new Dimension(150, 30)); // set dimensi awal
-        midField.setMinimumSize(new Dimension(150, 30)); // set ukuran minimum
-        midField.setMaximumSize(new Dimension(200, 30)); // set ukuran maksimum
+        midField.setPreferredSize(new Dimension(150, 10)); // set dimensi awal
+//        midField.setColumns(10); //width of the field
+//        midField.setMinimumSize(new Dimension(150, 30)); // set ukuran minimum
+//        midField.setMaximumSize(new Dimension(200, 30)); // set ukuran maksimum
 
         finalField = new JFormattedTextField(scoreFormat);
-        finalField.setColumns(10); //width of the field
-        finalField.setPreferredSize(new Dimension(150, 30)); // set dimensi awal
-        finalField.setMinimumSize(new Dimension(150, 30)); // set ukuran minimum
-        finalField.setMaximumSize(new Dimension(200, 30)); // set ukuran maksimum
+        finalField.setPreferredSize(new Dimension(150, 20)); // set dimensi awal
+//        finalField.setColumns(10); //width of the field
+//        finalField.setMinimumSize(new Dimension(150, 30)); // set ukuran minimum
+//        finalField.setMaximumSize(new Dimension(200, 30)); // set ukuran maksimum
 
         submitBtn = new JButton("Submit");
         submitBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
@@ -59,11 +60,11 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
         // Add components to the JFrame
         JPanel Header = new JPanel(new FlowLayout(FlowLayout.CENTER));
         Header.add(TitleLabel, BorderLayout.NORTH);
-        Header.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        Header.setBorder(BorderFactory.createEmptyBorder(40,0,20,0));
         add(Header, BorderLayout.NORTH);
 
-        JPanel body = new JPanel(new GridLayout(3,2));
-        body.setBorder(BorderFactory.createEmptyBorder(20, 10, 25, 30)); // add margin
+        JPanel body = new JPanel(new GridLayout(3,2,-70,30));
+        body.setBorder(BorderFactory.createEmptyBorder(60, 10, 120, 90)); // add margin
         body.add(asgLabel);
         body.add(asgField);
         body.add(midLabel);
@@ -73,7 +74,7 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
         add(body, BorderLayout.CENTER);
 
         JPanel footer = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        footer.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // add margin
+        footer.setBorder(BorderFactory.createEmptyBorder(10, 10, 50, 10)); // add margin
         footer.add(submitBtn);
         add(footer, BorderLayout.SOUTH);
 
@@ -91,7 +92,10 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
 
 
         submitBtn.addActionListener(this);
-        
+//        asgField.addActionListener(this);
+//        midField.addActionListener(this);
+//        finalField.addActionListener(this);
+
         setVisible(true);
     }
 
