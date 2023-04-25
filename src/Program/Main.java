@@ -9,6 +9,7 @@ public class Main {
 
         calculator.addAccount(new Account("kezia", "2602191522"));
 
-        new WelcomeLoginGUI();
+        // new WelcomeLoginGUI();
+        new SubjectGUI();
     }
 }

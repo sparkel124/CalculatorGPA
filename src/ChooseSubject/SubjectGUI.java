@@ -3,70 +3,95 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SubjectGUI extends JFrame {
-    private JPanel panel;
-    private JLabel label;
-    private JButton oopButton, charButton, calcButton, hciButton, sciCompButton, dsButton;
+    private JPanel subjectPanel, titlePanel, buttonPanel;
+    private JLabel titleLabel;
+    private JLayeredPane subjectLayer;
+    private JButton oopButton, cbButton, calcButton, hciButton, scButton, dsButton;
 
     public SubjectGUI() {
         // create the main frame
         JFrame frame = new JFrame();
-        frame.getContentPane().setBackground(Color.white);
         frame.setTitle("Alligators Calculator GPA");
+        frame.getContentPane().setBackground(new Color(0xCEFFC9));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
-        frame.setResizable(true);
+        frame.setResizable(false);
 
         ImageIcon logoFrame = new ImageIcon(getClass().getResource("logo.png"));
         frame.setIconImage(logoFrame.getImage());
 
-        // frame.setLayout(new GridLayout(2, 1));
-
-        // set up subject panel
-        panel = new JPanel();
-        panel.setBounds(100, 50, 300, 200);
-        panel.setBackground(new Color(0xCEFFC9));
-        panel.setLayout(null);
-        frame.add(panel);
-        frame.setLayout(new GridLayout(2, 1));
+        subjectPanel = new JPanel(new GridLayout(2, 1));
+        subjectPanel.setBackground(new Color(0xCEFFC9));
+//        subjectPanel.setLayout(new BoxLayout(subjectPanel, BoxLayout.Y_AXIS));
+        subjectPanel.setBorder(BorderFactory.createEmptyBorder(80, 100, 200, 100));
 
         // set  a title
-        label = new JLabel("Select a subject:");
-        label.setBounds(0, 0, 300, 30);
-        label.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-        label.setHorizontalAlignment(JLabel.CENTER);
-        panel.add(label);
+        titlePanel = new JPanel();
+        titlePanel.setBackground(new Color(0xCEFFC9));
+        titleLabel = new JLabel("Select a subject...");
+        titlePanel.setBorder(BorderFactory.createEmptyBorder(100, 0, 0, 0));
+        titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 15));
+        titlePanel.add(titleLabel);
+
+        buttonPanel = new JPanel(new GridLayout(6, 1));
+        buttonPanel.setBackground(new Color(0xCEFFC9));
+
+//        subjectLayer = new JLayeredPane();
+//        subjectLayer.setBounds(18, 95, 700,500);
+//        subjectLayer.setOpaque(true);
+//        subjectLayer.setBackground(new Color(0xCEFFC9));
+
+//        panel = new JPanel();
+//        panel.setBackground(new Color(0xCEFFC9));
+//        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+//        panel.setBorder(BorderFactory.createEmptyBorder(100, 0, 100, 0));
+
+        // button panel
+//        JPanel buttonPanel = new JPanel();
+//        buttonPanel.setBackground(new Color(0xCEFFC9));
+//        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
         // set button
         oopButton = new JButton("Object Oriented Programming");
-        oopButton.setBounds(50, 40, 200, 30);
-        oopButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-        panel.add(oopButton);
+        oopButton.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
+//        oopButton.setBounds(50, 40, 300, 30);
+        buttonPanel.add(oopButton);
+//        subjectLayer.add(oopButton);
 
-        charButton = new JButton("Character Building");
-        charButton.setBounds(50, 80, 200, 30);
-        charButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-        panel.add(charButton);
+        cbButton = new JButton("Character Building");
+        cbButton.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
+//        cbButton.setBounds(50, 80, 300, 30);
+        buttonPanel.add(cbButton);
+//        subjectLayer.add(cbButton);
 
         calcButton = new JButton("Calculus");
-        calcButton.setBounds(50, 120, 200, 30);
-        calcButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-        panel.add(calcButton);
+        calcButton.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
+//        calcButton.setBounds(50, 120, 300, 30);
+        buttonPanel.add(calcButton);
+//        subjectLayer.add(calcButton);
 
         hciButton = new JButton("Human Computer Interaction");
-        hciButton.setBounds(50, 160, 200, 30);
-        hciButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-        panel.add(hciButton);
+        hciButton.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
+//        hciButton.setBounds(50, 160, 300, 30);
+        buttonPanel.add(hciButton);
+//        subjectLayer.add(hciButton);
 
-        sciCompButton = new JButton("Scientific Computing");
-        sciCompButton.setBounds(50, 200, 200, 30);
-        sciCompButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-        panel.add(sciCompButton);
+        scButton = new JButton("Scientific Computing");
+        scButton.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
+//        scButton.setBounds(50, 200, 300, 30);
+        buttonPanel.add(scButton);
+//        subjectLayer.add(scButton);
 
         dsButton = new JButton("Data Structures");
-        dsButton.setBounds(50, 240, 200, 30);
-        dsButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-        panel.add(dsButton);
+        dsButton.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
+//        dsButton.setBounds(50, 240, 300, 30);
+        buttonPanel.add(dsButton);
+//        subjectLayer.add(dsButton);
 
+        subjectPanel.add(titlePanel);
+        subjectPanel.add(buttonPanel);
+        frame.add(subjectPanel);
+        frame.getContentPane().setBackground(Color.white);
         frame.setVisible(true);
     }
 
