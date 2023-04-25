@@ -87,7 +87,7 @@ public class InputScoreDS extends JFrame implements ActionListener{
         Header.setBorder(BorderFactory.createEmptyBorder(40,0,20,0));
         add(Header, BorderLayout.NORTH);
 
-        JPanel body = new JPanel(new GridLayout(5,2,-40,25));
+        JPanel body = new JPanel(new GridLayout(5,2,-40,15));
         body.setBorder(BorderFactory.createEmptyBorder(30, 10, 80, 90)); // add margin
         body.add(asgLabel);
         body.add(asgField);
