@@ -91,7 +91,7 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
 
 
         submitBtn.addActionListener(this);
-
+        
         setVisible(true);
     }
 
