@@ -94,9 +94,7 @@ public class InputScoreCB extends JFrame implements ActionListener {
 
 
         submitBtn.addActionListener(this);
-//        asgField.addActionListener(this);
-//        midField.addActionListener(this);
-//        finalField.addActionListener(this);
+
 
         setVisible(true);
     }
