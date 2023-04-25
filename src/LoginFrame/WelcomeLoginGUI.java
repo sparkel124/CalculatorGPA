@@ -1,7 +1,12 @@
 package LoginFrame;
 
+import ChooseSubject.SubjectGUI;
+import Program.Main;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -9,11 +14,13 @@ import javax.imageio.ImageIO;
 
 
 
-public class WelcomeLoginGUI extends JFrame {
+public class WelcomeLoginGUI extends JFrame implements ActionListener {
     private JPanel welcomePanel, loginPanel;
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
+
+    Main main;
 
     public WelcomeLoginGUI(){
         // create the main frame
@@ -22,7 +29,7 @@ public class WelcomeLoginGUI extends JFrame {
         frame.setTitle("Alligators Calculator GPA");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
-        frame.setResizable(true);
+        frame.setResizable(false);
 
         ImageIcon logoFrame = new ImageIcon(getClass().getResource("logo.png"));
         frame.setIconImage(logoFrame.getImage());
@@ -32,33 +39,30 @@ public class WelcomeLoginGUI extends JFrame {
         // set up welcome panel
         welcomePanel = new JPanel(new BorderLayout());
         welcomePanel.setBackground(new Color(0xCEFFC9));
-        try{
-            BufferedImage originalImage = ImageIO.read(new File("Welcome.png"));
-            if(originalImage != null){
-                Image scaledImage = originalImage.getScaledInstance(300, 500, Image.SCALE_SMOOTH);
-                JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
-                imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                welcomePanel.add(imageLabel, BorderLayout.CENTER);
-            }
-            else{
-                System.out.println("Error: Image could not be loaded.");
-            }
-        } catch (IOException e){
-            System.out.println("Error: " + e.getMessage());
-        }
+        welcomePanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50));
+
+        ImageIcon icon = new ImageIcon(getClass().getResource("Welcome.png"));
+        Image image = icon.getImage();
+        Image newing = image.getScaledInstance(300, 500, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newing);
+        JLabel welcomeLabel = new JLabel();
+        welcomeLabel.setIcon(icon);
+
+        welcomePanel.add(welcomeLabel);
+
 
         // set up login panel
         loginPanel = new JPanel(new GridLayout(4, 1));
         loginPanel.setBackground(Color.white);
+        loginPanel.setBorder(BorderFactory.createEmptyBorder(200, 0, 200, 0));
 
         // set up login title panel
         JPanel loginTitlePanel = new JPanel();
         loginTitlePanel.setBackground(Color.white);
         JLabel loginLabel = new JLabel("Login using your Account");
-        loginLabel.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
+        loginLabel.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 15));
         loginLabel.setBackground(new Color(0xCEFFC9));
         loginTitlePanel.add(loginLabel);
-        loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
         loginPanel.add(loginTitlePanel);
 
         // set up username panel
@@ -69,33 +73,24 @@ public class WelcomeLoginGUI extends JFrame {
         usernameField = new JTextField(10);
         usernamePanel.add(usernameLabel);
         usernamePanel.add(usernameField);
-        // usernamePanel.setLayout(new BoxLayout(usernamePanel, BoxLayout.X_AXIS));
-        usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginPanel.add(usernamePanel);
 
         // set up password panel
-        JPanel passwordPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JPanel passwordPanel = new JPanel();
         passwordPanel.setBackground(Color.white);
         JLabel passwordLabel = new JLabel("Password:");
         passwordLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
         passwordField = new JPasswordField(10);
         passwordPanel.add(passwordLabel);
         passwordPanel.add(passwordField);
-        // passwordPanel.setLayout(new BoxLayout(passwordPanel, BoxLayout.X_AXIS));
-        passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        passwordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginPanel.add(passwordPanel);
 
         // set up button panel
-        JPanel  buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.white);
         loginButton = new JButton("Login");
         loginButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-        loginButton.addActionListener(e -> login());
         buttonPanel.add(loginButton);
-        buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        // buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS));
         loginPanel.add(buttonPanel);
 
         // set the preferred size of the text fields to match the label size
@@ -108,24 +103,15 @@ public class WelcomeLoginGUI extends JFrame {
 
         frame.setVisible(true);
     }
-    private void login(){
-        String username = usernameField.getText();
-        String password = String.valueOf(passwordField.getPassword());
 
-        // perform login authentication
-        if (username.equals("admin") && password.equals("password")) {
-            // if login successful
-            JOptionPane.showMessageDialog(this, "Login successful!");
-            // create new frame and show it
-            JFrame newFrame = new JFrame();
-            newFrame.setTitle("New Frame");
-            newFrame.setSize(600, 400);
-            newFrame.setVisible(true);
-            // close the login frame
-            this.dispose();
-        } else {
-            // if login failed
-            JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.");
+    String username, password;
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        username = usernameField.getText();
+        password = new String(passwordField.getPassword());
+
+        if(e.getSource() == loginButton){
+
         }
     }
 }
@@ -144,6 +130,21 @@ public class WelcomeLoginGUI extends JFrame {
 //        JLabel imageLabel = new JLabel(new ImageIcon(getClass().getResource("Welcome.png")));
 //        imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 //        welcomePanel.add(imageLabel, BorderLayout.CENTER);
+
+//        try{
+//            BufferedImage originalImage = ImageIO.read(new File("Welcome.png"));
+//            if(originalImage != null){
+//                Image scaledImage = originalImage.getScaledInstance(300, 500, Image.SCALE_SMOOTH);
+//                JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
+//                imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//                welcomePanel.add(imageLabel, BorderLayout.CENTER);
+//            }
+//            else{
+//                System.out.println("Error: Image could not be loaded.");
+//            }
+//        } catch (IOException e){
+//            System.out.println("Error: " + e.getMessage());
+//        }
 
         // set up login panel
 //        JLabel loginLabel = new JLabel("Login", SwingConstants.CENTER);

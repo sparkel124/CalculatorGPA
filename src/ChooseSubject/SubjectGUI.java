@@ -7,7 +7,7 @@ public class SubjectGUI extends JFrame {
     private JLabel label;
     private JButton oopButton, charButton, calcButton, hciButton, sciCompButton, dsButton;
 
-    public void subjectGUI() {
+    public SubjectGUI() {
         // create the main frame
         JFrame frame = new JFrame();
         frame.getContentPane().setBackground(Color.white);
