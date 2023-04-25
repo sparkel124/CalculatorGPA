@@ -111,6 +111,22 @@ public class WelcomeLoginGUI extends JFrame {
     private void login(){
         String username = usernameField.getText();
         String password = String.valueOf(passwordField.getPassword());
+
+        // perform login authentication
+        if (username.equals("admin") && password.equals("password")) {
+            // if login successful
+            JOptionPane.showMessageDialog(this, "Login successful!");
+            // create new frame and show it
+            JFrame newFrame = new JFrame();
+            newFrame.setTitle("New Frame");
+            newFrame.setSize(600, 400);
+            newFrame.setVisible(true);
+            // close the login frame
+            this.dispose();
+        } else {
+            // if login failed
+            JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.");
+        }
     }
 }
 
