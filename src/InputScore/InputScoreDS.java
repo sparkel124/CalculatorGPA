@@ -77,9 +77,9 @@ public class InputScoreDS extends JFrame implements ActionListener{
 //        finalField.setMaximumSize(new Dimension(200, 30)); // set ukuran maksimum
 
         submitBtn = new JButton("Submit");
-        submitBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-        submitBtn.setSize(30, 10);
+        submitBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
         submitBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        submitBtn.setPreferredSize(new Dimension(150, 40));
 
         // Add components to the JFrame
         JPanel Header = new JPanel(new FlowLayout(FlowLayout.CENTER));
