@@ -24,16 +24,18 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
     private JButton loginButton;
     ArrayList<Account> temp;
     Calculator calculator;
+    JFrame frame;
 
     public void welcomeLogin(ArrayList<Account> accountList){
         temp = accountList;
         // create the main frame
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.getContentPane().setBackground(new Color(0xCEFFC9));
         frame.setTitle("Alligators Calculator GPA");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null); //position center
 
         ImageIcon logoFrame = new ImageIcon(getClass().getResource("logo.png"));
         frame.setIconImage(logoFrame.getImage());
@@ -53,7 +55,6 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
         welcomeLabel.setIcon(icon);
 
         welcomePanel.add(welcomeLabel);
-
 
         // set up login panel
         loginPanel = new JPanel(new GridLayout(4, 1));
@@ -121,9 +122,10 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
             }else{
                 JOptionPane.showMessageDialog(this, "Now, you can calculate your score!", "Welcome to Alligators Calculator GPA!", JOptionPane.INFORMATION_MESSAGE);
                 Account current = checkLogged();
-                SubjectGUI subjectGUI = new SubjectGUI(current, calculator);
-                this.dispose();
+                frame.dispose();
+                new SubjectGUI(current, calculator);
             }
+
         }
     }
 
