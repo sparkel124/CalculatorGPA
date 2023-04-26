@@ -10,7 +10,7 @@ public class Student extends Account {
     private double SCLabFinalScore, HCILabFinalScore;
     private double GPA;
 
-    Student(String name, String password, double SCAsgScore, double DSAsgScore, double OOPAsgScore, double CBAsgScore, double calAsgScore, double HCIAsgScore, double SCMidScore, double DSMidScore, double OOPMidScore, double CBMidScore, double CalMidScore, double HCIMidScore, double SCFinalScore, double DSFinalScore, double OOPFinalScore, double CBFinalScore, double CalFinalScore, double HCIFinalScore, double DSLabMidScore, double DSLabFinalScore, double SCLabFinalScore, double HCILabFinalScore, double GPA) {
+    Student(String name, String password, double SCAsgScore, double DSAsgScore, double OOPAsgScore, double CBAsgScore, double CalAsgScore, double HCIAsgScore, double SCMidScore, double DSMidScore, double OOPMidScore, double CBMidScore, double CalMidScore, double HCIMidScore, double SCFinalScore, double DSFinalScore, double OOPFinalScore, double CBFinalScore, double CalFinalScore, double HCIFinalScore, double DSLabMidScore, double DSLabFinalScore, double SCLabFinalScore, double HCILabFinalScore, double GPA) {
         super(name, password);
         this.SCAsgScore = SCAsgScore;
         this.DSAsgScore = DSAsgScore;

@@ -1,6 +1,8 @@
 package LoginFrame;
 
 import ChooseSubject.SubjectGUI;
+import Program.Account;
+import Program.Calculator;
 import Program.Main;
 
 import javax.swing.*;
@@ -10,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 
@@ -19,10 +22,11 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
+    ArrayList<Account> temp;
+    Calculator calculator;
 
-    Main main;
-
-    public WelcomeLoginGUI(){
+    public void welcomeLogin(ArrayList<Account> accountList){
+        temp = accountList;
         // create the main frame
         JFrame frame = new JFrame();
         frame.getContentPane().setBackground(new Color(0xCEFFC9));
@@ -92,6 +96,7 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
         loginButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
         buttonPanel.add(loginButton);
         loginPanel.add(buttonPanel);
+        loginButton.addActionListener(this);
 
         // set the preferred size of the text fields to match the label size
         usernameField.setPreferredSize(usernameLabel.getPreferredSize());
@@ -111,8 +116,38 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
         password = new String(passwordField.getPassword());
 
         if(e.getSource() == loginButton){
-
+            if(validation(username, password) == -1){
+                JOptionPane.showMessageDialog(this, "Please enter the correct username or password", "Invalid Input!", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "Now, you can calculate your score!", "Welcome to Alligators Calculator GPA!", JOptionPane.INFORMATION_MESSAGE);
+                Account current = checkLogged();
+                SubjectGUI subjectGUI = new SubjectGUI(current, calculator);
+                this.dispose();
+            }
         }
+    }
+
+    public Account checkLogged(){
+        Account curr = new Account(username, password);
+        for(int i = 0; i < temp.size(); i++){
+            if(temp.get(i).getLogged() == 1){
+                curr = temp.get(i);
+                return curr;
+            }
+        }
+        return curr;
+    }
+
+    public int validation(String username, String password){
+        for(int i = 0; i < temp.size(); i++){
+            if(username.equals(temp.get(i).getUsername())){
+                if(password.equals(temp.get(i).getPassword())){
+                    temp.get(i).setLogged(1);
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 }
 

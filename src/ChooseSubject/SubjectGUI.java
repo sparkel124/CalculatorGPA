@@ -1,4 +1,7 @@
 package ChooseSubject;
+import Program.Account;
+import Program.Calculator;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,7 +11,7 @@ public class SubjectGUI extends JFrame {
     private JLayeredPane subjectLayer;
     private JButton oopButton, cbButton, calcButton, hciButton, scButton, dsButton;
 
-    public SubjectGUI() {
+    public SubjectGUI(Account account, Calculator calculator) {
         // create the main frame
         JFrame frame = new JFrame();
         frame.setTitle("Alligators Calculator GPA");
