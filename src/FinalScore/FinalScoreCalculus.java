@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class FinalScoreCalculus extends JFrame {
-    Calculate calculate;
+    Calculate calculate = new Calculate();
     private JLabel titleLabel, finalScore;
     private JButton backButton;
     double scoreCalDouble = calculate.getTotalCal();
@@ -63,6 +63,8 @@ public class FinalScoreCalculus extends JFrame {
         TitlePanel.setBackground(bgColor);
         scorePanel.setBackground(bgColor);
         footerPanel.setBackground(bgColor);
+
+
     }
 
     public static void main(String[] args) {
