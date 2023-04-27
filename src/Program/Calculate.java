@@ -1,5 +1,7 @@
 package Program;
 
+import Calculation.CalculateCalculus;
+
 public class Calculate {
     private double totalSC;
     private double totalDS;
@@ -8,6 +10,13 @@ public class Calculate {
     private double totalCal;
     private double totalHCI;
     private double GPA;
+
+    public Calculate()
+    {
+        CalculateCalculus calculateCalculus = new CalculateCalculus();
+        totalCal = calculateCalculus.getFinalCalculus();
+    }
+
 
     public double getTotalSC() {
         return totalSC;

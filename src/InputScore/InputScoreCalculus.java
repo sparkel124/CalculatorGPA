@@ -1,4 +1,6 @@
 package InputScore;
+import Calculation.CalculateCalculus;
+import FinalScore.FinalScoreCalculus;
 import Program.Student;
 import javax.swing.*;
 import java.awt.*;
@@ -94,6 +96,7 @@ public class InputScoreCalculus extends JFrame implements ActionListener {
 
 
         submitBtn.addActionListener(this);
+
 //        asgField.addActionListener(this);
 //        midField.addActionListener(this);
 //        finalField.addActionListener(this);
@@ -101,13 +104,18 @@ public class InputScoreCalculus extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    private double asgScore, midScore, finalScore;
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            double asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
-            double midScore = ((Number) midField.getValue()).doubleValue();
-            double finalScore = ((Number) finalField.getValue()).doubleValue();
+            asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
+            midScore = ((Number) midField.getValue()).doubleValue();
+            finalScore = ((Number) finalField.getValue()).doubleValue();
+
+            new FinalScoreCalculus();
+            dispose();
         }catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
@@ -115,5 +123,27 @@ public class InputScoreCalculus extends JFrame implements ActionListener {
 
     }
 
+    public double getAsgScore() {
+        return asgScore;
+    }
 
+    public void setAsgScore(double asgScore) {
+        this.asgScore = asgScore;
+    }
+
+    public double getMidScore() {
+        return midScore;
+    }
+
+    public void setMidScore(double midScore) {
+        this.midScore = midScore;
+    }
+
+    public double getFinalScore() {
+        return finalScore;
+    }
+
+    public void setFinalScore(double finalScore) {
+        this.finalScore = finalScore;
+    }
 }
