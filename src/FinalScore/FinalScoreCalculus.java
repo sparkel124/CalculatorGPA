@@ -1,44 +1,66 @@
 package FinalScore;
 
+import InputScore.InputScoreCalculus;
+import Program.Calculate;
 import javax.swing.*;
 import java.awt.*;
 
 public class FinalScoreCalculus extends JFrame {
-    private JLabel titleLabel;
-
+    Calculate calculate = new Calculate();
+    private JLabel titleLabel, finalScore;
+    private JButton backButton;
+    double scoreCalDouble = calculate.getTotalCal();
+    Integer scoreCal= (int) scoreCalDouble;
     public FinalScoreCalculus()
     {
-        //Final score calculus
-        JLabel titleLabel = new JLabel("Your Calculus Final Score");
-        titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        System.out.println(scoreCalDouble);
+        System.out.println(scoreCal);
+        //create components
+        titleLabel = new JLabel("Your Calculus Final Score");
+        titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JTextField scoreField = new JTextField(20);
-        JButton backButton = new JButton("Back");
-        backButton.setPreferredSize(new Dimension(10,40));
-        backButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        finalScore = new JLabel(String.valueOf(scoreCal));
+        finalScore.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
+        finalScore.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JPanel finalCalcPanel = new JPanel(new BorderLayout());
-        finalCalcPanel.setBackground(new Color(0xCEFFC9));
-        finalCalcPanel.add(titleLabel, BorderLayout.NORTH);
-        finalCalcPanel.add(scoreField, BorderLayout.CENTER);
-        finalCalcPanel.add(backButton, BorderLayout.SOUTH);
+        backButton = new JButton("Back");
+        backButton.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+        backButton.setHorizontalAlignment(SwingConstants.CENTER);
+        backButton.setPreferredSize(new Dimension(150, 40));
 
-        getContentPane().add(finalCalcPanel);
+        //create panels and add components into panel
+        JPanel TitlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        TitlePanel.add(titleLabel, BorderLayout.NORTH);
+        TitlePanel.setBorder(BorderFactory.createEmptyBorder(40,0,20,0));
 
-        //template frame
+        JPanel scorePanel = new JPanel(new GridLayout(3,2,-70,30));
+        scorePanel.setBorder(BorderFactory.createEmptyBorder(60, 10, 120, 90)); // add margin
+        scorePanel.add(finalScore);
+
+        JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        footerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 50, 10)); // add margin
+        footerPanel.add(backButton);
+
+        //add panel into frame
+        add(TitlePanel, BorderLayout.NORTH);
+        add(scorePanel, BorderLayout.CENTER);
+        add(footerPanel, BorderLayout.SOUTH);
+
+        //setting frame
         setTitle("Alligators Calculator GPA");
-        getContentPane().setBackground(new Color(0xCEFFC9));
+        ImageIcon logoFrame = new ImageIcon(getClass().getResource("logo.png"));
+        Image img = logoFrame.getImage();
+
+        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setResizable(true);
-        ImageIcon logoFrame = new ImageIcon("logo.png");
-        setIconImage(logoFrame.getImage());
+        setLocationRelativeTo(null); //position center
+        setResizable(false);
+        setIconImage(img);
+        Color bgColor = new Color(0xCEFFC9);
+        TitlePanel.setBackground(bgColor);
+        scorePanel.setBackground(bgColor);
+        footerPanel.setBackground(bgColor);
     }
-
-    public static void main(String[] args) {
-        new FinalScoreCalculus();
-    }
-
 }

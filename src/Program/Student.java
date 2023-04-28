@@ -1,4 +1,8 @@
-public class Student extends Account{
+package Program;
+
+import Program.Account;
+
+public class Student extends Account {
     private double SCAsgScore, DSAsgScore, OOPAsgScore, CBAsgScore, CalAsgScore, HCIAsgScore;
     private double SCMidScore, DSMidScore, OOPMidScore, CBMidScore, CalMidScore, HCIMidScore;
     private double SCFinalScore, DSFinalScore, OOPFinalScore, CBFinalScore, CalFinalScore, HCIFinalScore;
@@ -6,7 +10,7 @@ public class Student extends Account{
     private double SCLabFinalScore, HCILabFinalScore;
     private double GPA;
 
-    public Student(String name, String password, double SCAsgScore, double DSAsgScore, double OOPAsgScore, double CBAsgScore, double calAsgScore, double HCIAsgScore, double SCMidScore, double DSMidScore, double OOPMidScore, double CBMidScore, double CalMidScore, double HCIMidScore, double SCFinalScore, double DSFinalScore, double OOPFinalScore, double CBFinalScore, double CalFinalScore, double HCIFinalScore, double DSLabMidScore, double DSLabFinalScore, double SCLabFinalScore, double HCILabFinalScore, double GPA) {
+    Student(String name, String password, double SCAsgScore, double DSAsgScore, double OOPAsgScore, double CBAsgScore, double CalAsgScore, double HCIAsgScore, double SCMidScore, double DSMidScore, double OOPMidScore, double CBMidScore, double CalMidScore, double HCIMidScore, double SCFinalScore, double DSFinalScore, double OOPFinalScore, double CBFinalScore, double CalFinalScore, double HCIFinalScore, double DSLabMidScore, double DSLabFinalScore, double SCLabFinalScore, double HCILabFinalScore, double GPA) {
         super(name, password);
         this.SCAsgScore = SCAsgScore;
         this.DSAsgScore = DSAsgScore;
