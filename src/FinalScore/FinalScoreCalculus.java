@@ -1,18 +1,22 @@
 package FinalScore;
 
 import InputScore.InputScoreCalculus;
+import Program.Account;
 import Program.Calculate;
+import Program.Calculator;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class FinalScoreCalculus extends JFrame {
-    Calculate calculate = new Calculate();
+
     private JLabel titleLabel, finalScore;
     private JButton backButton;
-    double scoreCalDouble = calculate.getTotalCal();
-    Integer scoreCal= (int) scoreCalDouble;
-    public FinalScoreCalculus()
+    public FinalScoreCalculus(Account account, int index, Calculator calculator)
     {
+        Calculate calculate = new Calculate(account, index, calculator);
+        double scoreCalDouble = calculate.getTotalCal();
+        Integer scoreCal= (int) scoreCalDouble;
         System.out.println(scoreCalDouble);
         System.out.println(scoreCal);
         //create components
@@ -20,7 +24,7 @@ public class FinalScoreCalculus extends JFrame {
         titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        finalScore = new JLabel(String.valueOf(scoreCal));
+        finalScore = new JLabel(String.valueOf(scoreCalDouble));
         finalScore.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         finalScore.setHorizontalAlignment(SwingConstants.CENTER);
 

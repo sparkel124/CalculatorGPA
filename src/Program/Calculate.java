@@ -11,9 +11,9 @@ public class Calculate {
     private double totalHCI;
     private double GPA;
 
-    public Calculate()
+    public Calculate(Account account, int index, Calculator calculator)
     {
-        CalculateCalculus calculateCalculus = new CalculateCalculus();
+        CalculateCalculus calculateCalculus = new CalculateCalculus(account, index, calculator);
         totalCal = calculateCalculus.getFinalCalculus();
     }
 

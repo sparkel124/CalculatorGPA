@@ -1,15 +1,18 @@
 package Calculation;
 
 import InputScore.InputScoreCalculus;
+import Program.Account;
+import Program.Calculate;
+import Program.Calculator;
 
 public class CalculateCalculus {
-    InputScoreCalculus calculus = new InputScoreCalculus();
     private double finalCalculus;
-    public CalculateCalculus()
+    public CalculateCalculus(Account account, int index, Calculator calculator)
     {
-        double asgScore = calculus.getAsgScore();
-        double midScore = calculus.getMidScore();
-        double finalScore = calculus.getFinalScore();
+        double asgScore = calculator.getStudents().get(index).getCalAsgScore();
+        double midScore = calculator.getStudents().get(index).getCalMidScore();
+        double finalScore = calculator.getStudents().get(index).getCalFinalScore();
+
 
         finalCalculus = ((25.0/100.0)*asgScore) + ((35.0/100.0)*midScore) + ((40.0/100.0)*finalScore);
     }

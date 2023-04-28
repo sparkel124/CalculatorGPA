@@ -1,6 +1,8 @@
 package InputScore;
 import Calculation.CalculateCalculus;
 import FinalScore.FinalScoreCalculus;
+import Program.Account;
+import Program.Calculator;
 import Program.Student;
 import javax.swing.*;
 import java.awt.*;
@@ -8,13 +10,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
-public class InputScoreCalculus extends JFrame implements ActionListener {
+public class InputScoreCalculus extends JFrame implements ActionListener{
+
     private JLabel asgLabel, midLabel, finalLabel, TitleLabel;
     private JFormattedTextField asgField, midField, finalField;
     private JButton submitBtn;
+    Account accounts;
+    int indexs;
+    Calculator calculators;
 
-    public InputScoreCalculus () {
+    public InputScoreCalculus (Account account, int index, Calculator calculator) {
         setTitle("Alligators Calculator GPA");
 
         //input just 2 decimal digit
@@ -94,8 +101,12 @@ public class InputScoreCalculus extends JFrame implements ActionListener {
         body.setBackground(bgColor);
         Header.setBackground(bgColor);
 
+        accounts=account;
+        indexs=index;
+        calculators=calculator;
 
         submitBtn.addActionListener(this);
+
 
 //        asgField.addActionListener(this);
 //        midField.addActionListener(this);
@@ -109,18 +120,25 @@ public class InputScoreCalculus extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
+//        try {
             asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
             midScore = ((Number) midField.getValue()).doubleValue();
             finalScore = ((Number) finalField.getValue()).doubleValue();
 
-            new FinalScoreCalculus();
-            dispose();
-        }catch (NullPointerException ex)
-        {
-            JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
-        }
+            System.out.println(asgScore);
+            System.out.println(midScore);
+            System.out.println(finalScore);
 
+            calculators.getStudents().get(indexs).setCalAsgScore(asgScore);
+            calculators.getStudents().get(indexs).setCalMidScore(midScore);
+            calculators.getStudents().get(indexs).setCalFinalScore(finalScore);
+
+            new FinalScoreCalculus(accounts,indexs,calculators);
+            dispose();
+//        }catch (NullPointerException ex)
+//        {
+////            JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
+//        }
     }
 
     public double getAsgScore() {
@@ -146,4 +164,6 @@ public class InputScoreCalculus extends JFrame implements ActionListener {
     public void setFinalScore(double finalScore) {
         this.finalScore = finalScore;
     }
+
 }
+

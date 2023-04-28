@@ -5,10 +5,10 @@ import LoginFrame.WelcomeLoginGUI;
 import java.util.ArrayList;
 
 public class Login {
-    public void LoginMenu(ArrayList<Account> account){
+    public void LoginMenu(ArrayList<Student> students, Calculator calculator){
 
         WelcomeLoginGUI welcomeLoginGUI = new WelcomeLoginGUI();
-        welcomeLoginGUI.welcomeLogin(account);
+        welcomeLoginGUI.welcomeLogin(students, calculator);
 
     }
 }

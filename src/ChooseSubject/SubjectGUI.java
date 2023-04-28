@@ -14,7 +14,7 @@ public class SubjectGUI extends JFrame {
     private JLayeredPane subjectLayer;
     private JButton oopButton, cbButton, calcButton, hciButton, scButton, dsButton;
 
-    public SubjectGUI(Account account, Calculator calculator) {
+    public SubjectGUI(Account account, int index, Calculator calculator) {
         // create the main frame
         JFrame frame = new JFrame();
         frame.setTitle("Alligators Calculator GPA");
@@ -69,7 +69,8 @@ public class SubjectGUI extends JFrame {
         buttonPanel.add(calcButton);
         calcButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new InputScoreCalculus();
+                new InputScoreCalculus(account, index, calculator);
+                System.out.println(calculator);
                 frame.dispose();
             }
         });
