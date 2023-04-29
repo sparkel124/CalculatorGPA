@@ -17,9 +17,6 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
     private JLabel asgLabel, midLabel, finalLabel, TitleLabel;
     private JFormattedTextField asgField, midField, finalField;
     private JButton submitBtn;
-    Account accounts;
-    int indexs;
-    Calculator calculators;
 
     public InputScoreCalculus (Account account, int index, Calculator calculator) {
         setTitle("Alligators Calculator GPA");
@@ -116,18 +113,17 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
     }
 
     private double asgScore, midScore, finalScore;
+    private Account accounts;
+    private int indexs;
+    private Calculator calculators;
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        try {
+        try {
             asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
             midScore = ((Number) midField.getValue()).doubleValue();
             finalScore = ((Number) finalField.getValue()).doubleValue();
-
-            System.out.println(asgScore);
-            System.out.println(midScore);
-            System.out.println(finalScore);
 
             calculators.getStudents().get(indexs).setCalAsgScore(asgScore);
             calculators.getStudents().get(indexs).setCalMidScore(midScore);
@@ -135,10 +131,10 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
 
             new FinalScoreCalculus(accounts,indexs,calculators);
             dispose();
-//        }catch (NullPointerException ex)
-//        {
-////            JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
-//        }
+        }catch (NullPointerException ex)
+        {
+            JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
+        }
     }
 
     public double getAsgScore() {

@@ -121,7 +121,6 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
                 Account current = checkLogged();
                 int indexStudent = validation(username, password);
                 frame.dispose();
-                System.out.println(calculators);
                 new SubjectGUI(current,indexStudent, calculators);
             }
 

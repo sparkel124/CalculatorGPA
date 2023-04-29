@@ -1,6 +1,6 @@
 package Program;
 
-import Calculation.CalculateCalculus;
+import Calculation.*;
 
 public class Calculate {
     private double totalSC;
@@ -14,7 +14,20 @@ public class Calculate {
     public Calculate(Account account, int index, Calculator calculator)
     {
         CalculateCalculus calculateCalculus = new CalculateCalculus(account, index, calculator);
+        CalculateCB calculateCB = new CalculateCB(account, index, calculator);
+        CalculateDS calculateDS = new CalculateDS(account, index, calculator);
+        CalculateHCI calculateHCI = new CalculateHCI(account, index, calculator);
+        CalculateOOP calculateOOP= new CalculateOOP(account, index, calculator);
+        CalculateSC calculateSC = new CalculateSC(account, index, calculator);
+
         totalCal = calculateCalculus.getFinalCalculus();
+        totalCB = calculateCB.getFinalCB();
+        totalDS = calculateDS.getFinalDS();
+        totalHCI = calculateHCI.getFinalHCI();
+        totalOOP = calculateOOP.getFinalOOP();
+        totalSC = calculateSC.getFinalSC();
+
+        GPA = ((4*totalCal) + (2*totalCB) + (6*totalDS) + (3*totalHCI) + (2*totalOOP) + (3*totalSC)) /20 ;
     }
 
 

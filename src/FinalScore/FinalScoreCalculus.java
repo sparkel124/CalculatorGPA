@@ -1,17 +1,22 @@
 package FinalScore;
 
-import InputScore.InputScoreCalculus;
+import ChooseSubject.SubjectGUI;
 import Program.Account;
 import Program.Calculate;
 import Program.Calculator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class FinalScoreCalculus extends JFrame {
+public class FinalScoreCalculus extends JFrame implements ActionListener {
 
     private JLabel titleLabel, finalScore;
     private JButton backButton;
+    private Account accounts;
+    private int indexs;
+    private Calculator calculators;
     public FinalScoreCalculus(Account account, int index, Calculator calculator)
     {
         Calculate calculate = new Calculate(account, index, calculator);
@@ -36,10 +41,10 @@ public class FinalScoreCalculus extends JFrame {
         //create panels and add components into panel
         JPanel TitlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         TitlePanel.add(titleLabel, BorderLayout.NORTH);
-        TitlePanel.setBorder(BorderFactory.createEmptyBorder(40,0,20,0));
+        TitlePanel.setBorder(BorderFactory.createEmptyBorder(100,0,20,0));
 
-        JPanel scorePanel = new JPanel(new GridLayout(3,2,-70,30));
-        scorePanel.setBorder(BorderFactory.createEmptyBorder(60, 10, 120, 90)); // add margin
+        JPanel scorePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        scorePanel.setBorder(BorderFactory.createEmptyBorder(100, 10, 50, 10)); // add margin
         scorePanel.add(finalScore);
 
         JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -66,5 +71,17 @@ public class FinalScoreCalculus extends JFrame {
         TitlePanel.setBackground(bgColor);
         scorePanel.setBackground(bgColor);
         footerPanel.setBackground(bgColor);
+
+        accounts=account;
+        indexs=index;
+        calculators=calculator;
+
+        backButton.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        dispose();
+        new SubjectGUI(accounts,indexs, calculators);
     }
 }

@@ -1,4 +1,5 @@
 package ChooseSubject;
+import FinalGPA.FinalGUI;
 import InputScore.*;
 import Program.Account;
 import Program.Calculator;
@@ -12,7 +13,8 @@ public class SubjectGUI extends JFrame {
     private JPanel subjectPanel, titlePanel, buttonPanel;
     private JLabel titleLabel;
     private JLayeredPane subjectLayer;
-    private JButton oopButton, cbButton, calcButton, hciButton, scButton, dsButton;
+    private JButton oopButton, cbButton, calcButton, hciButton, scButton, dsButton, gpaButton;
+
 
     public SubjectGUI(Account account, int index, Calculator calculator) {
         // create the main frame
@@ -49,7 +51,7 @@ public class SubjectGUI extends JFrame {
         buttonPanel.add(oopButton);
         oopButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new InputScoreOOP();
+                new InputScoreOOP(account, index, calculator);
                 frame.dispose();
             }
         });
@@ -59,7 +61,7 @@ public class SubjectGUI extends JFrame {
         buttonPanel.add(cbButton);
         cbButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new InputScoreCB();
+                new InputScoreCB(account, index, calculator);
                 frame.dispose();
             }
         });
@@ -70,7 +72,6 @@ public class SubjectGUI extends JFrame {
         calcButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new InputScoreCalculus(account, index, calculator);
-                System.out.println(calculator);
                 frame.dispose();
             }
         });
@@ -80,7 +81,7 @@ public class SubjectGUI extends JFrame {
         buttonPanel.add(hciButton);
         hciButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new InputScoreHCI();
+                new InputScoreHCI(account, index, calculator);
                 frame.dispose();
             }
         });
@@ -90,7 +91,7 @@ public class SubjectGUI extends JFrame {
         buttonPanel.add(scButton);
         scButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new InputScoreSC();
+                new InputScoreSC(account, index, calculator);
                 frame.dispose();
             }
         });
@@ -100,7 +101,18 @@ public class SubjectGUI extends JFrame {
         buttonPanel.add(dsButton);
         dsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new InputScoreDS();
+                new InputScoreDS(account, index, calculator);
+                frame.dispose();
+            }
+        });
+
+        // FINAL GPA
+        dsButton = new JButton("Calculate Final GPA");
+        dsButton.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
+        buttonPanel.add(dsButton);
+        dsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new FinalGUI(account, index, calculator);
                 frame.dispose();
             }
         });

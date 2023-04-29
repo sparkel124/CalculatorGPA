@@ -13,7 +13,6 @@ public class CalculateCalculus {
         double midScore = calculator.getStudents().get(index).getCalMidScore();
         double finalScore = calculator.getStudents().get(index).getCalFinalScore();
 
-
         finalCalculus = ((25.0/100.0)*asgScore) + ((35.0/100.0)*midScore) + ((40.0/100.0)*finalScore);
     }
 
