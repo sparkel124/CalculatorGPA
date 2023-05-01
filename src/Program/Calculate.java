@@ -3,12 +3,12 @@ package Program;
 import Calculation.*;
 
 public class Calculate {
-    private double totalSC;
-    private double totalDS;
-    private double totalOOP;
-    private double totalCB;
-    private double totalCal;
-    private double totalHCI;
+    private double totalSC = -1;
+    private double totalDS =-1;
+    private double totalOOP = -1;
+    private double totalCB = -1;
+    private double totalCal = -1;
+    private double totalHCI = -1;
     private double GPA;
 
     public Calculate(Account account, int index, Calculator calculator)
@@ -19,6 +19,7 @@ public class Calculate {
         CalculateHCI calculateHCI = new CalculateHCI(account, index, calculator);
         CalculateOOP calculateOOP= new CalculateOOP(account, index, calculator);
         CalculateSC calculateSC = new CalculateSC(account, index, calculator);
+        CalculateGPA calculateGPA = new CalculateGPA(account, index, calculator);
 
         totalCal = calculateCalculus.getFinalCalculus();
         totalCB = calculateCB.getFinalCB();
@@ -27,7 +28,10 @@ public class Calculate {
         totalOOP = calculateOOP.getFinalOOP();
         totalSC = calculateSC.getFinalSC();
 
-        GPA = ((4*totalCal) + (2*totalCB) + (6*totalDS) + (3*totalHCI) + (2*totalOOP) + (3*totalSC)) /20 ;
+        if(totalCal!=-1 && totalCB!=-1 && totalDS!=-1 && totalHCI!=-1 && totalOOP!=-1 && totalSC!=-1)
+        {
+            GPA = calculateGPA.getGPA();
+        }
     }
 
 

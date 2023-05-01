@@ -39,105 +39,73 @@ public class FinalGUI extends JFrame implements ActionListener {
         gpaScore = calculate.getGPA();
 
         titleLabel = new JLabel("Your Final Report");
-        titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
+        titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         nameLabel = new JLabel("Name: " + name);
-        nameLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
+        nameLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         NIMlabel = new JLabel("NIM: " + nim);
-        NIMlabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
+        NIMlabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         NIMlabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        calLabel = new JLabel("Calculus: ");
-        calLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        calLabel = new JLabel("Calculus: " + " : " + String.valueOf(calScore));
+        calLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         calLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        calScoreLabel = new JLabel(String.valueOf(calScore));
-        calScoreLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        calScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        cbLabel = new JLabel("Character Building: ");
-        cbLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        cbLabel = new JLabel("Character Building: " + " : " + String.valueOf(cbScore));
+        cbLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         cbLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        cbScoreLabel = new JLabel(String.valueOf(cbScore));
-        cbScoreLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        cbScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        dsLabel = new JLabel("Data Structure: ");
-        dsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        dsLabel = new JLabel("Data Structure: " + " : " + String.valueOf(dsScore));
+        dsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         dsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        dsScoreLabel = new JLabel(String.valueOf(dsScore));
-        dsScoreLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        dsScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        hciLabel = new JLabel("Human and Computer Interaction: ");
-        hciLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        hciLabel = new JLabel("Human and Computer Interaction: " + " : " + String.valueOf(hciScore));
+        hciLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         hciLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        hciScoreLabel = new JLabel(String.valueOf(hciScore));
-        hciScoreLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        hciScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        oopLabel = new JLabel("Object Oriented Programming: ");
-        oopLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        oopLabel = new JLabel("Object Oriented Programming: " + " : " + String.valueOf(oopScore));
+        oopLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         oopLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        oopScoreLabel = new JLabel(String.valueOf(oopScore));
-        oopScoreLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        oopScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        scLabel = new JLabel("Scientific Computing: ");
-        scLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        scLabel = new JLabel("Scientific Computing: " + " : " + String.valueOf(scScore));
+        scLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         scLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        scScoreLabel = new JLabel(String.valueOf(scScore));
-        scScoreLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        scScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gpaLabel = new JLabel("Final GPA");
-        gpaLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
+        gpaLabel = new JLabel("Final GPA" + " : " + String.valueOf(gpaScore));
+        gpaLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
         gpaLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        gpaScoreLabel = new JLabel(String.valueOf(gpaScore));
-        gpaScoreLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
-        gpaScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         backButton = new JButton("Back");
         backButton.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
         backButton.setHorizontalAlignment(SwingConstants.CENTER);
-        backButton.setPreferredSize(new Dimension(150, 40));
+        backButton.setPreferredSize(new Dimension(100, 40));
 
         JPanel Header = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        Header.setBorder(BorderFactory.createEmptyBorder(10, 10, 50, 90));
+        Header.add(titleLabel);
         Header.add(nameLabel);
         Header.add(NIMlabel);
-        Header.setBorder(BorderFactory.createEmptyBorder(40,0,20,0));
+        Header.setLayout(new GridLayout(0,1));
+        Header.setBorder(BorderFactory.createEmptyBorder(20,0,20,0));
         add(Header, BorderLayout.NORTH);
 
         JPanel body = new JPanel(new GridLayout(3,2,-70,30));
-        body.setBorder(BorderFactory.createEmptyBorder(60, 10, 120, 90)); // add margin
+        body.setLayout(new GridLayout(0,1));
+        body.setBorder(BorderFactory.createEmptyBorder(20, 10, 20, 10)); // add margin
         body.add(calLabel);
-        body.add(calScoreLabel);
         body.add(cbLabel);
-        body.add(cbScoreLabel);
         body.add(dsLabel);
-        body.add(dsScoreLabel);
         body.add(hciLabel);
-        body.add(hciScoreLabel);
         body.add(oopLabel);
-        body.add(oopLabel);
-        body.add(scLabel);
         body.add(scLabel);
         add(body, BorderLayout.CENTER);
 
         JPanel footer = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        footer.setBorder(BorderFactory.createEmptyBorder(10, 10, 20, 10)); // add margin
+        footer.setLayout(new GridLayout(0,1));
+        footer.setBorder(BorderFactory.createEmptyBorder(10, 300, 20, 300)); // add margin
         footer.add(gpaLabel);
-        footer.add(gpaScoreLabel);
         footer.add(backButton);
         add(footer, BorderLayout.SOUTH);
 
