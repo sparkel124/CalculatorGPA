@@ -1,4 +1,8 @@
 package InputScore;
+import FinalScore.FinalScoreCB;
+import FinalScore.FinalScoreCalculus;
+import Program.Account;
+import Program.Calculator;
 import Program.Student;
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +15,11 @@ public class InputScoreCB extends JFrame implements ActionListener {
     private JLabel asgLabel, midLabel, finalLabel, TitleLabel;
     private JFormattedTextField asgField, midField, finalField;
     private JButton submitBtn;
+    private Account accounts;
+    private int indexs;
+    private Calculator calculators;
 
-    public InputScoreCB () {
+    public InputScoreCB (Account account, int index, Calculator calculator) {
         setTitle("Alligators Calculator GPA");
 
         //input just 2 decimal digit
@@ -92,26 +99,59 @@ public class InputScoreCB extends JFrame implements ActionListener {
         body.setBackground(bgColor);
         Header.setBackground(bgColor);
 
+        accounts=account;
+        indexs=index;
+        calculators=calculator;
 
         submitBtn.addActionListener(this);
 
-
         setVisible(true);
     }
+
+    private double asgScore, midScore, finalScore;
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            double asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
-            double midScore = ((Number) midField.getValue()).doubleValue();
-            double finalScore = ((Number) finalField.getValue()).doubleValue();
+            asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
+            midScore = ((Number) midField.getValue()).doubleValue();
+            finalScore = ((Number) finalField.getValue()).doubleValue();
+
+            calculators.getStudents().get(indexs).setCBAsgScore(asgScore);
+            calculators.getStudents().get(indexs).setCBMidScore(midScore);
+            calculators.getStudents().get(indexs).setCBFinalScore(finalScore);
+
+            new FinalScoreCB(accounts, indexs, calculators);
+            dispose();
         }catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
         }
-
     }
 
+    public double getAsgScore() {
+        return asgScore;
+    }
+
+    public void setAsgScore(double asgScore) {
+        this.asgScore = asgScore;
+    }
+
+    public double getMidScore() {
+        return midScore;
+    }
+
+    public void setMidScore(double midScore) {
+        this.midScore = midScore;
+    }
+
+    public double getFinalScore() {
+        return finalScore;
+    }
+
+    public void setFinalScore(double finalScore) {
+        this.finalScore = finalScore;
+    }
 
 }

@@ -3,18 +3,13 @@ package LoginFrame;
 import ChooseSubject.SubjectGUI;
 import Program.Account;
 import Program.Calculator;
-import Program.Main;
+import Program.Student;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-
 
 
 public class WelcomeLoginGUI extends JFrame implements ActionListener {
@@ -22,11 +17,11 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
-    ArrayList<Account> temp;
-    Calculator calculator;
+    ArrayList<Student> temp;
+    Calculator calculators;
     JFrame frame;
 
-    public void welcomeLogin(ArrayList<Account> accountList){
+    public void welcomeLogin(ArrayList<Student> accountList, Calculator calculator){
         temp = accountList;
         // create the main frame
         frame = new JFrame();
@@ -108,6 +103,8 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
         frame.add(loginPanel);
 
         frame.setVisible(true);
+
+        calculators=calculator;
     }
 
     String username, password;
@@ -122,8 +119,9 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
             }else{
                 JOptionPane.showMessageDialog(this, "Now, you can calculate your score!", "Welcome to Alligators Calculator GPA!", JOptionPane.INFORMATION_MESSAGE);
                 Account current = checkLogged();
+                int indexStudent = validation(username, password);
                 frame.dispose();
-                new SubjectGUI(current, calculator);
+                new SubjectGUI(current,indexStudent, calculators);
             }
 
         }
@@ -139,6 +137,18 @@ public class WelcomeLoginGUI extends JFrame implements ActionListener {
         }
         return curr;
     }
+
+//    public int searchIndex(){
+//        int curr = -1;
+//        for(int i = 0; i < temp.size(); i++){
+//            if(temp.get(i).getLogged() == 1){
+//                curr = i;
+//                return curr;
+//            }
+//        }
+//        return curr;
+//    }
+
 
     public int validation(String username, String password){
         for(int i = 0; i < temp.size(); i++){

@@ -1,19 +1,27 @@
 package FinalScore;
 
-import InputScore.InputScoreCalculus;
+import ChooseSubject.SubjectGUI;
+import Program.Account;
 import Program.Calculate;
+import Program.Calculator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class FinalScoreCalculus extends JFrame {
-    Calculate calculate = new Calculate();
+public class FinalScoreCalculus extends JFrame implements ActionListener {
+
     private JLabel titleLabel, finalScore;
     private JButton backButton;
-    double scoreCalDouble = calculate.getTotalCal();
-    Integer scoreCal= (int) scoreCalDouble;
-    public FinalScoreCalculus()
+    private Account accounts;
+    private int indexs;
+    private Calculator calculators;
+    public FinalScoreCalculus(Account account, int index, Calculator calculator)
     {
+        Calculate calculate = new Calculate(account, index, calculator);
+        double scoreCalDouble = calculate.getTotalCal();
+        Integer scoreCal= (int) scoreCalDouble;
         System.out.println(scoreCalDouble);
         System.out.println(scoreCal);
         //create components
@@ -21,7 +29,7 @@ public class FinalScoreCalculus extends JFrame {
         titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        finalScore = new JLabel(String.valueOf(scoreCal));
+        finalScore = new JLabel(String.valueOf(scoreCalDouble));
         finalScore.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         finalScore.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -33,10 +41,10 @@ public class FinalScoreCalculus extends JFrame {
         //create panels and add components into panel
         JPanel TitlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         TitlePanel.add(titleLabel, BorderLayout.NORTH);
-        TitlePanel.setBorder(BorderFactory.createEmptyBorder(40,0,20,0));
+        TitlePanel.setBorder(BorderFactory.createEmptyBorder(100,0,20,0));
 
-        JPanel scorePanel = new JPanel(new GridLayout(3,2,-70,30));
-        scorePanel.setBorder(BorderFactory.createEmptyBorder(60, 10, 120, 90)); // add margin
+        JPanel scorePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        scorePanel.setBorder(BorderFactory.createEmptyBorder(100, 10, 50, 10)); // add margin
         scorePanel.add(finalScore);
 
         JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -64,10 +72,16 @@ public class FinalScoreCalculus extends JFrame {
         scorePanel.setBackground(bgColor);
         footerPanel.setBackground(bgColor);
 
+        accounts=account;
+        indexs=index;
+        calculators=calculator;
 
+        backButton.addActionListener(this);
     }
 
-    public static void main(String[] args) {
-        new FinalScoreCalculus();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        dispose();
+        new SubjectGUI(accounts,indexs, calculators);
     }
 }
