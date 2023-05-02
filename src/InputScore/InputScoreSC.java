@@ -1,4 +1,9 @@
 package InputScore;
+import FinalScore.FinalScoreDS;
+import FinalScore.FinalScoreSC;
+import Program.Account;
+import Program.Calculator;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,8 +14,12 @@ public class InputScoreSC extends JFrame implements ActionListener{
     private JLabel asgLabel, midLabel, finalLabel, TitleLabel, midlabLabel, finallabLabel;
     private JFormattedTextField asgField, midField, finalField, midlabField, finallabField;
     private JButton submitBtn;
+    private Account accounts;
+    private int indexs;
+    private Calculator calculators;
 
-    public InputScoreSC()
+
+    public InputScoreSC(Account account, int index, Calculator calculator)
     {
         setTitle("Alligators Calculator GPA");
 
@@ -33,10 +42,6 @@ public class InputScoreSC extends JFrame implements ActionListener{
         finalLabel = new JLabel("Final Lecture Score:");
         finalLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         finalLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        midlabLabel = new JLabel("Mid Test Lab Score:");
-        midlabLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        midlabLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         finallabLabel = new JLabel("Final Lab Score:");
         finallabLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -95,8 +100,6 @@ public class InputScoreSC extends JFrame implements ActionListener{
         body.add(midField);
         body.add(finalLabel);
         body.add(finalField);
-        body.add(midlabLabel);
-        body.add(midlabField);
         body.add(finallabLabel);
         body.add(finallabField);
         add(body, BorderLayout.CENTER);
@@ -106,7 +109,7 @@ public class InputScoreSC extends JFrame implements ActionListener{
         footer.add(submitBtn);
         add(footer, BorderLayout.SOUTH);
 
-        ImageIcon logoFrame = new ImageIcon("logo.png");
+        ImageIcon logoFrame = new ImageIcon(getClass().getResource("logo.png"));
         Image img = logoFrame.getImage();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -119,23 +122,37 @@ public class InputScoreSC extends JFrame implements ActionListener{
         Header.setBackground(bgColor);
 
 
+        accounts=account;
+        indexs=index;
+        calculators=calculator;
+
         submitBtn.addActionListener(this);
-//        asgField.addActionListener(this);
-//        midField.addActionListener(this);
-//        finalField.addActionListener(this);
 
         setVisible(true);
     }
 
+    private double asgScore, midScore, midlabScore, finalScore, finallabScore;
+
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            double asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
-            double midScore = ((Number) midField.getValue()).doubleValue();
-            double midlabScore = ((Number) midlabField.getValue()).doubleValue();
-            double finalScore = ((Number) finalField.getValue()).doubleValue();
-            double finallabScore = ((Number) finallabField.getValue()).doubleValue();
+            asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
+            midScore = ((Number) midField.getValue()).doubleValue();
+            finalScore = ((Number) finalField.getValue()).doubleValue();
+            finallabScore = ((Number) finallabField.getValue()).doubleValue();
+            if(asgScore < 0 || asgScore > 100 || midScore < 0 || midScore > 100 || finalScore < 0 || finalScore > 100 || finallabScore < 0 || finallabScore > 100)
+            {
+                JOptionPane.showMessageDialog(this, "Please enter the score between 0-100");
+            }
+            else {
+                calculators.getStudents().get(indexs).setSCAsgScore(asgScore);
+                calculators.getStudents().get(indexs).setSCMidScore(midScore);
+                calculators.getStudents().get(indexs).setSCFinalScore(finalScore);
+                calculators.getStudents().get(indexs).setSCLabFinalScore(finallabScore);
 
+                new FinalScoreSC(accounts, indexs, calculators);
+                dispose();
+            }
         }catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");

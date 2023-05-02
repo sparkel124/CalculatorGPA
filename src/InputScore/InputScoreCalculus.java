@@ -1,4 +1,8 @@
 package InputScore;
+import Calculation.CalculateCalculus;
+import FinalScore.FinalScoreCalculus;
+import Program.Account;
+import Program.Calculator;
 import Program.Student;
 import javax.swing.*;
 import java.awt.*;
@@ -6,13 +10,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
-public class InputScoreCalculus extends JFrame implements ActionListener {
+public class InputScoreCalculus extends JFrame implements ActionListener{
+
     private JLabel asgLabel, midLabel, finalLabel, TitleLabel;
     private JFormattedTextField asgField, midField, finalField;
     private JButton submitBtn;
 
-    public InputScoreCalculus () {
+    public InputScoreCalculus (Account account, int index, Calculator calculator) {
         setTitle("Alligators Calculator GPA");
 
         //input just 2 decimal digit
@@ -80,7 +86,7 @@ public class InputScoreCalculus extends JFrame implements ActionListener {
         footer.add(submitBtn);
         add(footer, BorderLayout.SOUTH);
 
-        ImageIcon logoFrame = new ImageIcon("logo.png");
+        ImageIcon logoFrame = new ImageIcon(getClass().getResource("logo.png"));
         Image img = logoFrame.getImage();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -92,8 +98,13 @@ public class InputScoreCalculus extends JFrame implements ActionListener {
         body.setBackground(bgColor);
         Header.setBackground(bgColor);
 
+        accounts=account;
+        indexs=index;
+        calculators=calculator;
 
         submitBtn.addActionListener(this);
+
+
 //        asgField.addActionListener(this);
 //        midField.addActionListener(this);
 //        finalField.addActionListener(this);
@@ -101,19 +112,60 @@ public class InputScoreCalculus extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    private double asgScore, midScore, finalScore;
+    private Account accounts;
+    private int indexs;
+    private Calculator calculators;
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            double asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
-            double midScore = ((Number) midField.getValue()).doubleValue();
-            double finalScore = ((Number) finalField.getValue()).doubleValue();
+            asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
+            midScore = ((Number) midField.getValue()).doubleValue();
+            finalScore = ((Number) finalField.getValue()).doubleValue();
+
+            if(asgScore < 0 || asgScore > 100 || midScore < 0 || midScore > 100 || finalScore < 0 || finalScore > 100)
+            {
+                JOptionPane.showMessageDialog(this, "Please enter the score between 0 - 100");
+            }
+            else
+            {
+                calculators.getStudents().get(indexs).setCalAsgScore(asgScore);
+                calculators.getStudents().get(indexs).setCalMidScore(midScore);
+                calculators.getStudents().get(indexs).setCalFinalScore(finalScore);
+            }
+            new FinalScoreCalculus(accounts,indexs,calculators);
+            dispose();
         }catch (NullPointerException ex)
         {
-            JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
+            JOptionPane.showMessageDialog(this, "Please enter the score for all assignments");
         }
-
     }
 
+    public double getAsgScore() {
+        return asgScore;
+    }
+
+    public void setAsgScore(double asgScore) {
+        this.asgScore = asgScore;
+    }
+
+    public double getMidScore() {
+        return midScore;
+    }
+
+    public void setMidScore(double midScore) {
+        this.midScore = midScore;
+    }
+
+    public double getFinalScore() {
+        return finalScore;
+    }
+
+    public void setFinalScore(double finalScore) {
+        this.finalScore = finalScore;
+    }
 
 }
+
