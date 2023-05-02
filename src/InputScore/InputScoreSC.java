@@ -43,10 +43,6 @@ public class InputScoreSC extends JFrame implements ActionListener{
         finalLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         finalLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        midlabLabel = new JLabel("Mid Test Lab Score:");
-        midlabLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        midlabLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
         finallabLabel = new JLabel("Final Lab Score:");
         finallabLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         finallabLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -104,8 +100,6 @@ public class InputScoreSC extends JFrame implements ActionListener{
         body.add(midField);
         body.add(finalLabel);
         body.add(finalField);
-//        body.add(midlabLabel);
-//        body.add(midlabField);
         body.add(finallabLabel);
         body.add(finallabField);
         add(body, BorderLayout.CENTER);
@@ -144,20 +138,24 @@ public class InputScoreSC extends JFrame implements ActionListener{
         try {
             asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
             midScore = ((Number) midField.getValue()).doubleValue();
-//            midlabScore = ((Number) midlabField.getValue()).doubleValue();
             finalScore = ((Number) finalField.getValue()).doubleValue();
             finallabScore = ((Number) finallabField.getValue()).doubleValue();
+            if(asgScore < 0 || asgScore > 100 || midScore < 0 || midScore > 100 || finalScore < 0 || finalScore > 100 || finallabScore < 0 || finallabScore > 100)
+            {
+                JOptionPane.showMessageDialog(this, "Please enter the score between 0-100");
+            }
+            else {
+                calculators.getStudents().get(indexs).setSCAsgScore(asgScore);
+                calculators.getStudents().get(indexs).setSCMidScore(midScore);
+                calculators.getStudents().get(indexs).setSCFinalScore(finalScore);
+                calculators.getStudents().get(indexs).setSCLabFinalScore(finallabScore);
 
-            calculators.getStudents().get(indexs).setSCAsgScore(asgScore);
-            calculators.getStudents().get(indexs).setSCMidScore(midScore);
-//            calculators.getStudents().get(indexs).setDSLabMidScore(midlabScore);
-            calculators.getStudents().get(indexs).setSCFinalScore(finalScore);
-            calculators.getStudents().get(indexs).setSCLabFinalScore(finallabScore);
+                new FinalScoreSC(accounts, indexs, calculators);
+                dispose();
+            }
 
-            new FinalScoreSC(accounts,indexs,calculators);
-            dispose();
-
-        }catch (NullPointerException ex)
+        }
+        catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
         }

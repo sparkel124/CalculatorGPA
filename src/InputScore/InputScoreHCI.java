@@ -40,9 +40,9 @@ public class InputScoreHCI extends JFrame implements ActionListener {
         finalLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         finalLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        midlabLabel = new JLabel("Mid Test Lab Score:");
-        midlabLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        midlabLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//        midlabLabel = new JLabel("Mid Test Lab Score:");
+//        midlabLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+//        midlabLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         finallabLabel = new JLabel("Final Lab Score:");
         finallabLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -69,9 +69,9 @@ public class InputScoreHCI extends JFrame implements ActionListener {
 //        finalField.setColumns(10); //width of the field
 //        finalField.setMinimumSize(new Dimension(150, 30)); // set ukuran minimum
 //        finalField.setMaximumSize(new Dimension(200, 30)); // set ukuran maksimum
-
-        midlabField = new JFormattedTextField(scoreFormat);
-        midlabField.setPreferredSize(new Dimension(150, 10)); // set dimensi awal
+//
+//        midlabField = new JFormattedTextField(scoreFormat);
+//        midlabField.setPreferredSize(new Dimension(150, 10)); // set dimensi awal
 //        midField.setColumns(10); //width of the field
 //        midField.setMinimumSize(new Dimension(150, 30)); // set ukuran minimum
 //        midField.setMaximumSize(new Dimension(200, 30)); // set ukuran maksimum
@@ -145,9 +145,23 @@ public class InputScoreHCI extends JFrame implements ActionListener {
         try {
             asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
             midScore = ((Number) midField.getValue()).doubleValue();
-//            midlabScore = ((Number) midlabField.getValue()).doubleValue();
             finalScore = ((Number) finalField.getValue()).doubleValue();
             finallabScore = ((Number) finallabField.getValue()).doubleValue();
+
+            if(asgScore < 0 || asgScore > 100 || midScore < 0 || midlabScore > 100 || finalScore < 0 || finalScore > 100 || finallabScore < 0 || finallabScore > 100)
+            {
+                JOptionPane.showMessageDialog(this, "Please enter the score between 0-100");
+            }
+            else {
+                calculators.getStudents().get(indexs).setDSAsgScore(asgScore);
+                calculators.getStudents().get(indexs).setDSMidScore(midScore);
+                calculators.getStudents().get(indexs).setDSLabMidScore(midlabScore);
+                calculators.getStudents().get(indexs).setDSFinalScore(finalScore);
+                calculators.getStudents().get(indexs).setDSLabFinalScore(finallabScore);
+
+                new FinalScoreDS(accounts,indexs,calculators);
+                dispose();
+            }
 
             calculators.getStudents().get(indexs).setHCIAsgScore(asgScore);
             calculators.getStudents().get(indexs).setHCIMidScore(midScore);

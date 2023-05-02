@@ -124,16 +124,21 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
             asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
             midScore = ((Number) midField.getValue()).doubleValue();
             finalScore = ((Number) finalField.getValue()).doubleValue();
-
-            calculators.getStudents().get(indexs).setCalAsgScore(asgScore);
-            calculators.getStudents().get(indexs).setCalMidScore(midScore);
-            calculators.getStudents().get(indexs).setCalFinalScore(finalScore);
-
+            if(asgScore < 0 || asgScore > 100 || midScore < 0 || midScore > 100 || finalScore < 0 || finalScore > 100)
+            {
+                JOptionPane.showMessageDialog(this, "Please enter the score between 0 - 100");
+            }
+            else
+            {
+                calculators.getStudents().get(indexs).setCalAsgScore(asgScore);
+                calculators.getStudents().get(indexs).setCalMidScore(midScore);
+                calculators.getStudents().get(indexs).setCalFinalScore(finalScore);
+            }
             new FinalScoreCalculus(accounts,indexs,calculators);
             dispose();
         }catch (NullPointerException ex)
         {
-            JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
+            JOptionPane.showMessageDialog(this, "Please enter the score for all assignments");
         }
     }
 
@@ -144,6 +149,7 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
     public void setAsgScore(double asgScore) {
         this.asgScore = asgScore;
     }
+
 
     public double getMidScore() {
         return midScore;
