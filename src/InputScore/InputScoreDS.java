@@ -1,4 +1,9 @@
 package InputScore;
+import FinalScore.FinalScoreCalculus;
+import FinalScore.FinalScoreDS;
+import Program.Account;
+import Program.Calculator;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +15,7 @@ public class InputScoreDS extends JFrame implements ActionListener{
     private JFormattedTextField asgField, midField, finalField, midlabField, finallabField;
     private JButton submitBtn;
 
-    public InputScoreDS()
+    public InputScoreDS(Account account, int index, Calculator calculator)
     {
         setTitle("Alligators Calculator GPA");
 
@@ -106,7 +111,7 @@ public class InputScoreDS extends JFrame implements ActionListener{
         footer.add(submitBtn);
         add(footer, BorderLayout.SOUTH);
 
-        ImageIcon logoFrame = new ImageIcon("logo.png");
+        ImageIcon logoFrame = new ImageIcon(getClass().getResource("logo.png"));
         Image img = logoFrame.getImage();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -119,22 +124,37 @@ public class InputScoreDS extends JFrame implements ActionListener{
         Header.setBackground(bgColor);
 
 
+        accounts=account;
+        indexs=index;
+        calculators=calculator;
+
         submitBtn.addActionListener(this);
-//        asgField.addActionListener(this);
-//        midField.addActionListener(this);
-//        finalField.addActionListener(this);
 
         setVisible(true);
     }
 
+    private double asgScore, midScore, midlabScore, finalScore, finallabScore;
+    private Account accounts;
+    private int indexs;
+    private Calculator calculators;
+
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            double asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
-            double midScore = ((Number) midField.getValue()).doubleValue();
-            double midlabScore = ((Number) midlabField.getValue()).doubleValue();
-            double finalScore = ((Number) finalField.getValue()).doubleValue();
-            double finallabScore = ((Number) finallabField.getValue()).doubleValue();
+            asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
+            midScore = ((Number) midField.getValue()).doubleValue();
+            midlabScore = ((Number) midlabField.getValue()).doubleValue();
+            finalScore = ((Number) finalField.getValue()).doubleValue();
+            finallabScore = ((Number) finallabField.getValue()).doubleValue();
+
+            calculators.getStudents().get(indexs).setDSAsgScore(asgScore);
+            calculators.getStudents().get(indexs).setDSMidScore(midScore);
+            calculators.getStudents().get(indexs).setDSLabMidScore(midlabScore);
+            calculators.getStudents().get(indexs).setDSFinalScore(finalScore);
+            calculators.getStudents().get(indexs).setDSLabFinalScore(finallabScore);
+
+            new FinalScoreDS(accounts,indexs,calculators);
+            dispose();
 
         }catch (NullPointerException ex)
         {
@@ -142,3 +162,5 @@ public class InputScoreDS extends JFrame implements ActionListener{
         }
     }
 }
+
+

@@ -1,4 +1,8 @@
 package InputScore;
+import FinalScore.FinalScoreCalculus;
+import FinalScore.FinalScoreOOP;
+import Program.Account;
+import Program.Calculator;
 import Program.Student;
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +16,7 @@ public class InputScoreOOP extends JFrame implements ActionListener {
     private JFormattedTextField asgField, midField, finalField;
     private JButton submitBtn;
 
-    public InputScoreOOP () {
+    public InputScoreOOP (Account account, int index, Calculator calculator) {
         setTitle("Alligators Calculator GPA");
 
         //input just 2 decimal digit
@@ -80,7 +84,7 @@ public class InputScoreOOP extends JFrame implements ActionListener {
         footer.add(submitBtn);
         add(footer, BorderLayout.SOUTH);
 
-        ImageIcon logoFrame = new ImageIcon("logo.png");
+        ImageIcon logoFrame = new ImageIcon(getClass().getResource("logo.png"));
         Image img = logoFrame.getImage();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -93,25 +97,67 @@ public class InputScoreOOP extends JFrame implements ActionListener {
         Header.setBackground(bgColor);
 
 
+        accounts=account;
+        indexs=index;
+        calculators=calculator;
+
         submitBtn.addActionListener(this);
 
 
+//        asgField.addActionListener(this);
+//        midField.addActionListener(this);
+//        finalField.addActionListener(this);
+
         setVisible(true);
     }
+
+    private double asgScore, midScore, finalScore;
+    private Account accounts;
+    private int indexs;
+    private Calculator calculators;
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            double asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
-            double midScore = ((Number) midField.getValue()).doubleValue();
-            double finalScore = ((Number) finalField.getValue()).doubleValue();
+            asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
+            midScore = ((Number) midField.getValue()).doubleValue();
+            finalScore = ((Number) finalField.getValue()).doubleValue();
+
+            calculators.getStudents().get(indexs).setOOPAsgScore(asgScore);
+            calculators.getStudents().get(indexs).setOOPMidScore(midScore);
+            calculators.getStudents().get(indexs).setOOPFinalScore(finalScore);
+
+            new FinalScoreOOP(accounts,indexs,calculators);
+            dispose();
         }catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
         }
-
     }
 
+    public double getAsgScore() {
+        return asgScore;
+    }
+
+    public void setAsgScore(double asgScore) {
+        this.asgScore = asgScore;
+    }
+
+    public double getMidScore() {
+        return midScore;
+    }
+
+    public void setMidScore(double midScore) {
+        this.midScore = midScore;
+    }
+
+    public double getFinalScore() {
+        return finalScore;
+    }
+
+    public void setFinalScore(double finalScore) {
+        this.finalScore = finalScore;
+    }
 
 }

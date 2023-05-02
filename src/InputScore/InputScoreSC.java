@@ -153,7 +153,9 @@ public class InputScoreSC extends JFrame implements ActionListener{
                 new FinalScoreSC(accounts, indexs, calculators);
                 dispose();
             }
-        }catch (NullPointerException ex)
+
+        }
+        catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
         }

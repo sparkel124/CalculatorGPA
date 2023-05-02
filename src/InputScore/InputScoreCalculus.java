@@ -124,7 +124,6 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
             asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
             midScore = ((Number) midField.getValue()).doubleValue();
             finalScore = ((Number) finalField.getValue()).doubleValue();
-
             if(asgScore < 0 || asgScore > 100 || midScore < 0 || midScore > 100 || finalScore < 0 || finalScore > 100)
             {
                 JOptionPane.showMessageDialog(this, "Please enter the score between 0 - 100");
@@ -150,6 +149,7 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
     public void setAsgScore(double asgScore) {
         this.asgScore = asgScore;
     }
+
 
     public double getMidScore() {
         return midScore;

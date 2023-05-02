@@ -3,13 +3,17 @@ package Program;
 import java.util.ArrayList;
 
 public class Calculator {
-    ArrayList<Student> student = new ArrayList<>();
+    private ArrayList<Student> students = new ArrayList<>();
 
-    public ArrayList<Student> getStudent() {
-        return student;
+    public ArrayList<Student> getStudents() {
+        return students;
     }
 
-    public void setStudent(ArrayList<Student> student) {
-        this.student = student;
+    public void setStudents(ArrayList<Student> students) {
+        this.students = students;
+    }
+
+    public void addAccount(Student accountAdded){
+        this.students.add(accountAdded);
     }
 }
