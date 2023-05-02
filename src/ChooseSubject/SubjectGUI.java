@@ -29,19 +29,23 @@ public class SubjectGUI extends JFrame {
         ImageIcon logoFrame = new ImageIcon(getClass().getResource("logo.png"));
         frame.setIconImage(logoFrame.getImage());
 
-        subjectPanel = new JPanel(new GridLayout(2, 1));
+//        subjectPanel = new JPanel(new GridLayout(3, 1));
+        subjectPanel = new JPanel();
+        subjectPanel.setLayout(new BoxLayout(subjectPanel, BoxLayout.Y_AXIS));
+//        subjectPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         subjectPanel.setBackground(new Color(0xCEFFC9));
-        subjectPanel.setBorder(BorderFactory.createEmptyBorder(80, 100, 200, 100));
+        subjectPanel.setBorder(BorderFactory.createEmptyBorder(50, 100, 200, 100));
 
         // set  a title
         titlePanel = new JPanel();
         titlePanel.setBackground(new Color(0xCEFFC9));
+//        titlePanel.setBackground(Color.RED);
         titleLabel = new JLabel("Select a subject...");
-        titlePanel.setBorder(BorderFactory.createEmptyBorder(100, 0, 0, 0));
+        titlePanel.setBorder(BorderFactory.createEmptyBorder(60, 0, 0, 0));
         titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 15));
         titlePanel.add(titleLabel);
 
-        buttonPanel = new JPanel(new GridLayout(6, 1));
+        buttonPanel = new JPanel(new GridLayout(4, 1));
         buttonPanel.setBackground(new Color(0xCEFFC9));
 
         // set button
@@ -107,10 +111,11 @@ public class SubjectGUI extends JFrame {
         });
 
         // FINAL GPA
-        dsButton = new JButton("Calculate Final GPA");
-        dsButton.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
-        buttonPanel.add(dsButton);
-        dsButton.addActionListener(new ActionListener() {
+        gpaButton = new JButton("Calculate Final GPA");
+        gpaButton.setFont(new Font("Comic Sans MS", Font.ITALIC, 15));
+//        gpaButton.setBounds(100, 100, 300, 30);
+//        gpaButton.setHorizontalAlignment(SwingConstants.CENTER);
+        gpaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new FinalGUI(account, index, calculator);
                 frame.dispose();
@@ -119,6 +124,7 @@ public class SubjectGUI extends JFrame {
 
         subjectPanel.add(titlePanel);
         subjectPanel.add(buttonPanel);
+        subjectPanel.add(gpaButton);
         frame.add(subjectPanel);
         frame.getContentPane().setBackground(Color.white);
         frame.setVisible(true);
