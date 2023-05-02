@@ -148,28 +148,20 @@ public class InputScoreHCI extends JFrame implements ActionListener {
             finalScore = ((Number) finalField.getValue()).doubleValue();
             finallabScore = ((Number) finallabField.getValue()).doubleValue();
 
-            if(asgScore < 0 || asgScore > 100 || midScore < 0 || midlabScore > 100 || finalScore < 0 || finalScore > 100 || finallabScore < 0 || finallabScore > 100)
+            if(asgScore < 0 || asgScore > 100 || midScore < 0 || midScore > 100 || finalScore < 0 || finalScore > 100 || finallabScore < 0 || finallabScore > 100)
             {
                 JOptionPane.showMessageDialog(this, "Please enter the score between 0-100");
             }
             else {
-                calculators.getStudents().get(indexs).setDSAsgScore(asgScore);
-                calculators.getStudents().get(indexs).setDSMidScore(midScore);
-                calculators.getStudents().get(indexs).setDSLabMidScore(midlabScore);
-                calculators.getStudents().get(indexs).setDSFinalScore(finalScore);
-                calculators.getStudents().get(indexs).setDSLabFinalScore(finallabScore);
 
-                new FinalScoreDS(accounts,indexs,calculators);
+                calculators.getStudents().get(indexs).setHCIAsgScore(asgScore);
+                calculators.getStudents().get(indexs).setHCIMidScore(midScore);
+                calculators.getStudents().get(indexs).setHCIFinalScore(finalScore);
+                calculators.getStudents().get(indexs).setHCILabFinalScore(finallabScore);
+
+                new FinalScoreHCI(accounts,indexs,calculators);
                 dispose();
             }
-
-            calculators.getStudents().get(indexs).setHCIAsgScore(asgScore);
-            calculators.getStudents().get(indexs).setHCIMidScore(midScore);
-            calculators.getStudents().get(indexs).setHCIFinalScore(finalScore);
-            calculators.getStudents().get(indexs).setHCILabFinalScore(finallabScore);
-
-            new FinalScoreHCI(accounts,indexs,calculators);
-            dispose();
 
         }catch (NullPointerException ex)
         {

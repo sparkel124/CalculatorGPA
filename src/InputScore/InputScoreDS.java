@@ -146,16 +146,21 @@ public class InputScoreDS extends JFrame implements ActionListener{
             midlabScore = ((Number) midlabField.getValue()).doubleValue();
             finalScore = ((Number) finalField.getValue()).doubleValue();
             finallabScore = ((Number) finallabField.getValue()).doubleValue();
+            if (asgScore < 0 || asgScore > 100 || midScore < 0 || midScore > 100 || midlabScore < 0 || midlabScore > 100 || finalScore < 0 || finalScore > 100 || finallabScore < 0 || finallabScore > 100)
+            {
+                JOptionPane.showMessageDialog(this, "Please enter a score between 0 - 100");
+            }
+            else
+            {
+                calculators.getStudents().get(indexs).setDSAsgScore(asgScore);
+                calculators.getStudents().get(indexs).setDSMidScore(midScore);
+                calculators.getStudents().get(indexs).setDSLabMidScore(midlabScore);
+                calculators.getStudents().get(indexs).setDSFinalScore(finalScore);
+                calculators.getStudents().get(indexs).setDSLabFinalScore(finallabScore);
 
-            calculators.getStudents().get(indexs).setDSAsgScore(asgScore);
-            calculators.getStudents().get(indexs).setDSMidScore(midScore);
-            calculators.getStudents().get(indexs).setDSLabMidScore(midlabScore);
-            calculators.getStudents().get(indexs).setDSFinalScore(finalScore);
-            calculators.getStudents().get(indexs).setDSLabFinalScore(finallabScore);
-
-            new FinalScoreDS(accounts,indexs,calculators);
-            dispose();
-
+                new FinalScoreDS(accounts,indexs,calculators);
+                dispose();
+            }
         }catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");

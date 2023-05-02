@@ -118,12 +118,19 @@ public class InputScoreCB extends JFrame implements ActionListener {
             midScore = ((Number) midField.getValue()).doubleValue();
             finalScore = ((Number) finalField.getValue()).doubleValue();
 
-            calculators.getStudents().get(indexs).setCBAsgScore(asgScore);
-            calculators.getStudents().get(indexs).setCBMidScore(midScore);
-            calculators.getStudents().get(indexs).setCBFinalScore(finalScore);
+            if(asgScore < 0 || asgScore > 100 || midScore < 0 || midScore > 100 || finalScore < 0 || finalScore > 100)
+            {
+                JOptionPane.showMessageDialog(this, "Please enter the score between 0 - 100");
+            }
+            else
+            {
+                calculators.getStudents().get(indexs).setCBAsgScore(asgScore);
+                calculators.getStudents().get(indexs).setCBMidScore(midScore);
+                calculators.getStudents().get(indexs).setCBFinalScore(finalScore);
 
-            new FinalScoreCB(accounts, indexs, calculators);
-            dispose();
+                new FinalScoreCB(accounts, indexs, calculators);
+                dispose();
+            }
         }catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");

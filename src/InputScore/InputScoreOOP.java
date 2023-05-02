@@ -123,13 +123,19 @@ public class InputScoreOOP extends JFrame implements ActionListener {
             asgScore = ((Number) asgField.getValue()).doubleValue(); //change to double value
             midScore = ((Number) midField.getValue()).doubleValue();
             finalScore = ((Number) finalField.getValue()).doubleValue();
+            if(asgScore < 0 || asgScore > 100 || midScore < 0 || midScore > 100 || finalScore < 0 || finalScore > 100)
+            {
+                JOptionPane.showMessageDialog(this, "Please enter the score between 0 - 100");
+            }
+            else
+            {
+                calculators.getStudents().get(indexs).setOOPAsgScore(asgScore);
+                calculators.getStudents().get(indexs).setOOPMidScore(midScore);
+                calculators.getStudents().get(indexs).setOOPFinalScore(finalScore);
 
-            calculators.getStudents().get(indexs).setOOPAsgScore(asgScore);
-            calculators.getStudents().get(indexs).setOOPMidScore(midScore);
-            calculators.getStudents().get(indexs).setOOPFinalScore(finalScore);
-
-            new FinalScoreOOP(accounts,indexs,calculators);
-            dispose();
+                new FinalScoreOOP(accounts,indexs,calculators);
+                dispose();
+            }
         }catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a score for all assignments");
