@@ -28,7 +28,7 @@ public class FinalScoreHCI extends JFrame implements ActionListener {
         titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        finalScore = new JLabel(String.valueOf(scoreHCIDouble));
+        finalScore = new JLabel(String.format("%.2f", scoreHCIDouble));
         finalScore.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         finalScore.setHorizontalAlignment(SwingConstants.CENTER);
 

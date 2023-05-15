@@ -28,7 +28,7 @@ public class FinalScoreSC extends JFrame implements ActionListener {
         titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        finalScore = new JLabel(String.valueOf(scoreSCDouble));
+        finalScore = new JLabel(String.format("%.2f", scoreSCDouble));
         finalScore.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         finalScore.setHorizontalAlignment(SwingConstants.CENTER);
 

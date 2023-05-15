@@ -124,6 +124,7 @@ public class SubjectGUI extends JFrame {
 
         subjectPanel.add(titlePanel);
         subjectPanel.add(buttonPanel);
+        gpaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         subjectPanel.add(gpaButton);
         frame.add(subjectPanel);
         frame.getContentPane().setBackground(Color.white);

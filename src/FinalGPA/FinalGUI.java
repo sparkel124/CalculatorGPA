@@ -50,31 +50,31 @@ public class FinalGUI extends JFrame implements ActionListener {
         NIMlabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         NIMlabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        calLabel = new JLabel("Calculus: " + " : " + String.valueOf(calScore));
+        calLabel = new JLabel(String.format("Calculus: %.2f", calScore));
         calLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         calLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        cbLabel = new JLabel("Character Building: " + " : " + String.valueOf(cbScore));
+        cbLabel = new JLabel(String.format("Character Building: %.2f", cbScore));
         cbLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         cbLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        dsLabel = new JLabel("Data Structure: " + " : " + String.valueOf(dsScore));
+        dsLabel =  new JLabel(String.format("Data Structure:  %.2f", dsScore));
         dsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         dsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        hciLabel = new JLabel("Human and Computer Interaction: " + " : " + String.valueOf(hciScore));
+        hciLabel = new JLabel(String.format("Human and Computer Interaction: %.2f", hciScore));
         hciLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         hciLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        oopLabel = new JLabel("Object Oriented Programming: " + " : " + String.valueOf(oopScore));
+        oopLabel = new JLabel(String.format("Object Oriented Programming: %.2f", oopScore));
         oopLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         oopLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        scLabel = new JLabel("Scientific Computing: " + " : " + String.valueOf(scScore));
+        scLabel = new JLabel(String.format("Scientific Computing: %.2f", scScore));
         scLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         scLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        gpaLabel = new JLabel("Final GPA" + " : " + String.valueOf(gpaScore));
+        gpaLabel = new JLabel(String.format("Final GPA : %.2f", gpaScore));
         gpaLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
         gpaLabel.setHorizontalAlignment(SwingConstants.CENTER);
 

@@ -29,7 +29,7 @@ public class FinalScoreCalculus extends JFrame implements ActionListener {
         titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        finalScore = new JLabel(String.valueOf(scoreCalDouble));
+        finalScore = new JLabel(String.format("%.2f", scoreCalDouble));
         finalScore.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
         finalScore.setHorizontalAlignment(SwingConstants.CENTER);
 
