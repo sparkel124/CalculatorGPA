@@ -133,9 +133,9 @@ public class InputScoreCalculus extends JFrame implements ActionListener{
                 calculators.getStudents().get(indexs).setCalAsgScore(asgScore);
                 calculators.getStudents().get(indexs).setCalMidScore(midScore);
                 calculators.getStudents().get(indexs).setCalFinalScore(finalScore);
+                new FinalScoreCalculus(accounts,indexs,calculators);
+                dispose();
             }
-            new FinalScoreCalculus(accounts,indexs,calculators);
-            dispose();
         }catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter the score for all assignments");
